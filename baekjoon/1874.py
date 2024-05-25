@@ -26,7 +26,6 @@ stack = []
 result = []
 
 current = 1
-
 possible = True
 
 # 실행
