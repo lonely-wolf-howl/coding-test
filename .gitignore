@@ -1,1 +1,4 @@
 study/
+
+.vscode/
+.DS_Store
