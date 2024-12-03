@@ -1,4 +1,5 @@
 study/
-
-.vscode/
+desktop.ini
 .DS_Store
+.idea
+.venv
