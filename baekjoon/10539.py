@@ -7,16 +7,16 @@
 """
 
 # 내 풀이
-# N = input()
-# B = list(map(int, input().split()))
-#
-# A = []
-#
-# for i in range(len(B)):
-#     temp = ((i + 1) * B[i]) - (i * B[i - 1])
-#     A.append(temp)
-#
-# print(*A)
+N = input()
+B = list(map(int, input().split()))
+
+A = []
+
+for i in range(len(B)):
+    temp = ((i + 1) * B[i]) - (i * B[i - 1])
+    A.append(temp)
+
+print(*A)
 
 # 해설
 N, B = int(input()), list(map(int, input().split()))
