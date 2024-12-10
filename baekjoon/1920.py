@@ -8,20 +8,26 @@
 1 3 7 9 5
 """
 
-import sys
-
-input = sys.stdin.readline
-
+# 풀이 1
 N = int(input())
-N_SET = set(map(int, input().split()))
+A = set(map(int, input().split()))
 M = int(input())
-M_ARR = list(map(int, input().split()))
+B = list(map(int, input().split()))
 
-for x in M_ARR:
-    if x not in N_SET:
+for x in B:
+    if x not in A:
         print("0")
     else:
         print("1")
 
-# A dict stores key-value pairs and retrieves values through their keys.
-# A set stores only unique values and checks for the existence of values directly.
+# 풀이 2
+N = int(input()),
+A = {i: 1 for i in map(int, input().split())}
+M = int(input()),
+B = list(map(int, input().split()))
+
+# print(A)
+# {4: 1, 1: 1, 5: 1, 2: 1, 3: 1}
+
+for i in B:
+    print(A.get(i, 0))
