@@ -1,6 +1,19 @@
 # 걸그룹 마스터 준석이
 # https://www.acmicpc.net/problem/16165
 
+"""
+예제 입력
+1 1
+blackpink
+4
+jenny
+jisu
+lisa
+rose
+rose
+1
+"""
+
 N, M = map(int, input().split())
 
 team_member, member_team = {}, {}
