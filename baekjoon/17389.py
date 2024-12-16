@@ -1,4 +1,5 @@
 # 보너스 점수
+# https://www.acmicpc.net/problem/17389
 
 """
 예제 입력
