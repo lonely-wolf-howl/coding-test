@@ -1,14 +1,11 @@
 # 회전하는 큐
+# https://www.acmicpc.net/problem/1021
 
 """
 예제 입력
 10 3
 1 2 3
 """
-
-import sys
-
-input = sys.stdin.readline
 
 from collections import deque
 
