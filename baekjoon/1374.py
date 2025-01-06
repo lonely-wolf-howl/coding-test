@@ -1,4 +1,5 @@
 # 강의실
+# https://www.acmicpc.net/problem/1374
 
 """
 예제 입력
@@ -13,9 +14,6 @@
 5 6 20
 """
 
-import sys
-
-input = sys.stdin.readline
 
 import heapq
 
@@ -23,29 +21,34 @@ N = int(input())
 lecs = []
 
 for i in range(N):
-    id, start, end = map(int, input().split())
+    num, start, end = map(int, input().split())
     # [배정 전 강의 목록]에 삽입
     heapq.heappush(lecs, (start, end))
 
-heap = []  # 강의실
+# 각 강의실에서 진행 중인 강의의 종료 시간을 저장
+classroom_end_times = []
 
 # 1번째 강의가 끝나는 시간을 삽입
-end = heapq.heappop(lecs)[1]
-heapq.heappush(heap, end)
+end: int = heapq.heappop(lecs)[1]
+heapq.heappush(classroom_end_times, end)
 
-answer = 1  # 필요한 강의실의 최소 개수
+# 필요한 강의실의 최소 개수
+answer = 1
 
 for i in range(N - 1):
     # [배정 전 강의 목록]에서 '배정할 강의' 꺼내기
     temp_start, temp_end = heapq.heappop(lecs)
     # [배정 후 강의 목록]에서 '가장 일찍 끝나는' 강의 꺼내기
-    end = heapq.heappop(heap)
+    earliest_end_time: int = heapq.heappop(classroom_end_times)
 
-    if temp_start < end:  # 강의 시간이 겹치면
-        heapq.heappush(heap, end)  # '가장 일찍 끝나는 강의'는 기존 강의실에 다시 삽입
-        heapq.heappush(heap, temp_end)  # 새로운 강의실에 '배정할 강의' 삽입
+    if temp_start < earliest_end_time:
+        # '가장 일찍 끝나는 강의'는 기존 강의실에 다시 삽입
+        heapq.heappush(classroom_end_times, earliest_end_time)
+        # 새로운 강의실에 '배정할 강의' 삽입
+        heapq.heappush(classroom_end_times, temp_end)
         answer += 1
     else:
-        heapq.heappush(heap, temp_end)  # '배정할 강의'를 기존 강의실에 배정
+        # '배정할 강의'를 기존 강의실에 배정
+        heapq.heappush(classroom_end_times, temp_end)
 
 print(answer)
