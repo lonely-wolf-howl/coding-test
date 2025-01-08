@@ -41,9 +41,11 @@ else:
     print("NO")
 
 """
-+ push 1 (current=1): stack = [1         ], result = ['+'                    ], current = 2
-+ push 2 (current=2): stack = [1, 2      ], result = ['+', '+'               ], current = 3
-+ push 3 (current=3): stack = [1, 2, 3   ], result = ['+', '+', '+'          ], current = 4
-+ push 4 (current=4): stack = [1, 2, 3, 4], result = ['+', '+', '+', '+'     ], current = 5
-- pop  4            : stack = [1, 2, 3   ], result = ['+', '+', '+', '+', '-'], current = 5
++ push 1 (current=1): stack = [1         ], result = ['+'                              ]
++ push 2 (current=2): stack = [1, 2      ], result = ['+', '+'                         ]
++ push 3 (current=3): stack = [1, 2, 3   ], result = ['+', '+', '+'                    ]
++ push 4 (current=4): stack = [1, 2, 3, 4], result = ['+', '+', '+', '+'               ]
+- pop  4            : stack = [1, 2, 3   ], result = ['+', '+', '+', '+', '-'          ]
+- pop  3            : stack = [1, 2,     ], result = ['+', '+', '+', '+', '-', '-'     ]
++ push 5 (current=5): stack = [1, 2, 5   ], result = ['+', '+', '+', '+', '-', '-', '+']
 """
