@@ -1,4 +1,5 @@
 # 스택 수열
+# https://www.acmicpc.net/problem/1874
 
 """
 예제 입력
@@ -13,22 +14,14 @@
 1
 """
 
-import sys
-
-input = sys.stdin.readline
-
-# 입력
 n = int(input())  # 8
 sequence = list(int(input()) for _ in range(n))  # [4, 3, 6, 8, 7, 5, 2, 1]
 
-# 초기화
 stack = []
 result = []
-
 current = 1
 possible = True
 
-# 실행
 for number in sequence:
     while current <= number:
         stack.append(current)
