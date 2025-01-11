@@ -1,16 +1,6 @@
 # Mooyo Mooyo
 # https://www.acmicpc.net/problem/16768
 
-"""
-예제 입력
-6 3
-0000000000
-0000000300
-0054000300
-1054502230
-2211122220
-1111111223
-"""
 
 from collections import deque
 
@@ -35,11 +25,7 @@ def bfs(grid, x: int, y: int, n: int, k: int, visited):
         for dx, dy in directions:
             nx, ny = cx + dx, cy + dy
 
-            if (
-                is_in_bounds(nx, ny, n, 10)
-                and not visited[nx][ny]
-                and grid[nx][ny] == color
-            ):
+            if is_in_bounds(nx, ny, n, 10) and not visited[nx][ny] and grid[nx][ny] == color:
                 visited[nx][ny] = True
                 queue.append((nx, ny))
                 cells.append((nx, ny))
