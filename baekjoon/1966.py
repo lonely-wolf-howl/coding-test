@@ -1,4 +1,5 @@
 # 프린터 큐
+# https://www.acmicpc.net/problem/1966
 
 """
 예제 입력
@@ -7,27 +8,35 @@
 1 1 9 1 1 1
 """
 
-import sys
 from collections import deque
 
-input = sys.stdin.readline
-
-test_case = int(input())  # 1
+test_case = int(input())
 
 for _ in range(test_case):
-    N, M = list(map(int, input().split()))  # 6 0
-    queue = list(map(int, input().split()))  # [1, 1, 9, 1, 1, 1]
+    N, M = map(int, input().split())
+    queue = list(map(int, input().split()))
 
-    queue = deque([(priority, idx) for idx, priority in enumerate(queue)])
-    # deque([(1, 0), (1, 1), (9, 2), (1, 3), (1, 4), (1, 5)])
+    indexed_queue = []
+    for index, priority in enumerate(queue):
+        indexed_queue.append((priority, index))
+    queue = deque(indexed_queue)
 
     count = 0
-    while True:
-        current = queue.popleft()
-        if any(current[0] < q[0] for q in queue):
-            queue.append(current)
+
+    while queue:
+        current_document = queue.popleft()
+
+        has_higher_priority = False
+        for document in queue:
+            # 현재 문서의 우선순위보다 높은 문서가 있을 경우
+            if current_document[0] < document[0]:
+                has_higher_priority = True
+                break
+
+        if has_higher_priority:
+            queue.append(current_document)
         else:
             count += 1
-            if current[1] == M:
-                print(count)  # 5
+            if current_document[1] == M:
+                print(count)
                 break
