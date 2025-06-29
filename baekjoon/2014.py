@@ -1,4 +1,5 @@
 # 소수의 곱
+# https://www.acmicpc.net/problem/2014
 
 """
 예제 입력
@@ -6,35 +7,30 @@
 2 3 5 7
 """
 
-import sys
 import heapq
 
-input = sys.stdin.readline
 
-# 소수의 개수 K와 출력할 N번째 수
 K, N = map(int, input().split())
 data = list(map(int, input().split()))
 
 heap = []
-visited = set()  # 이미 처리된 수
+visited = set()
 max_value = max(data)
 
-for x in data:  # 초기 원소 삽입
+for x in data:
     heapq.heappush(heap, x)
 
-# N-1개의 원소 꺼내기
 for i in range(N - 1):
     element = heapq.heappop(heap)
     for x in data:
-        temp = element * x  # 곱한 결과 계산
+        temp = element * x
         if len(heap) >= N and max_value < temp:
             continue
-        if temp not in visited:  # 처음 방문하는 수라면
+        if temp not in visited:
             heapq.heappush(heap, temp)
             max_value = max(max_value, temp)
-            visited.add(temp)  # 방문 처리
+            visited.add(temp)
 
-# N번째 원소 꺼내기
 print(heapq.heappop(heap))
 
 """
