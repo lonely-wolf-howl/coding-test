@@ -5,18 +5,12 @@ def merge_sort(arr):
     if len(arr) <= 1:
         return arr
 
-    """
-    split the array into two halves
-    """
     mid = len(arr) // 2
     left = merge_sort(arr[:mid])
     right = merge_sort(arr[mid:])
 
     i = j = k = 0
 
-    """
-    merge left and right arrays
-    """
     while i < len(left) and j < len(right):
         if left[i] < right[j]:
             arr[k] = left[i]
@@ -26,9 +20,6 @@ def merge_sort(arr):
             j += 1
         k += 1
 
-    """
-    copy remaining elements from right or left array
-    """
     if i == len(left):
         while j < len(right):
             arr[k] = right[j]
