@@ -20,14 +20,3 @@ for book, count in books.items():
         result.append(book)
 
 print(sorted(result)[0])
-
-"""
-print(books)
-{'a': 3, 'b': 2 'c': 1}
-
-print(books.values())
-dict_values([3, 2, 1])
-
-print(books.items())
-dict_items([("a", 3), ("b", 2), ("c", 1)])
-"""
