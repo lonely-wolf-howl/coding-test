@@ -32,10 +32,10 @@ def post_order(node):
     print(node.data, end="")
 
 
-n = int(input())
+N = int(input())
 
 tree = {}
-for i in range(n):
+for i in range(N):
     data, left_node, right_node = input().split()
     tree[data] = Node(data, left_node, right_node)
 
