@@ -1,14 +1,5 @@
 # https://www.acmicpc.net/problem/1939
 
-"""
-예제 입력
-3 3
-1 2 2
-3 1 3
-2 3 2
-1 3
-"""
-
 from collections import deque
 
 
