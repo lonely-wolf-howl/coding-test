@@ -1,16 +1,14 @@
-# 알파벳 찾기
+# https://www.acmicpc.net/problem/10809
 
-import sys
+s = input()
 
-input = sys.stdin.readline
+check = [-1] * 26
 
-ARRAY = [-1] * 26
-S = input().strip()  # 문자열 입력
+for i in range(len(s)):
+    index = ord(s[i]) - ord("a")
 
-for i in range(len(S)):  # 문자를 하나씩 확인
-    index = ord(S[i]) - ord("a")
-    if ARRAY[index] == -1:  # 처음 등장했다면
-        ARRAY[index] = i  # 배열에 등장한 위치 기록
+    if check[index] == -1:
+        check[index] = i
 
-for result in ARRAY:
-    print(result, end=" ")
+for i in range(26):
+    print(check[i], end=" ")
