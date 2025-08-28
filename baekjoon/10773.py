@@ -1,10 +1,10 @@
 # https://www.acmicpc.net/problem/10773
 
-K = int(input())
+k = int(input())
 
 stack = []
 
-for _ in range(K):
+for _ in range(k):
     num = int(input())
     if num == 0:
         stack.pop()
