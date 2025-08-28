@@ -1,27 +1,14 @@
-# 제로
-
-"""
-예제 입력
-4
-3
-0
-4
-0
-"""
-
-import sys
-
-input = sys.stdin.readline
+# https://www.acmicpc.net/problem/10773
 
 K = int(input())
 
 stack = []
 
 for _ in range(K):
-    x = int(input())
-    if x == 0:
+    num = int(input())
+    if num == 0:
         stack.pop()
     else:
-        stack.append(x)
+        stack.append(num)
 
 print(sum(stack))
