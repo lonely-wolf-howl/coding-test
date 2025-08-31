@@ -4,7 +4,7 @@ from collections import deque
 import sys
 
 queue = deque()
-deq = deque()
+deq = deque([])
 
 n = int(input())
 
