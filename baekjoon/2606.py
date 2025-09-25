@@ -1,54 +1,33 @@
-# 바이러스
 # https://www.acmicpc.net/problem/2606
 
+from collections import deque
 
-def adjacency_list(num, edges):
-    graph = {i: [] for i in range(1, num + 1)}
+node_count = int(input())
+edge_count = int(input())
 
-    for a, b in edges:
-        graph[a].append(b)
-        graph[b].append(a)
+adjacency_list = [[] for _ in range(node_count)]
 
-    return graph
+for _ in range(edge_count):
+    u, v = map(int, input().split())
+    adjacency_list[u - 1].append(v - 1)
+    adjacency_list[v - 1].append(u - 1)
 
+visited = [False] * node_count
+visited[0] = True  # start node (computer 1)
 
-def dfs(graph, start):
-    visited = set()
-    stack = [start]
+# breadth first search
+queue = deque([0])
+while queue:
+    current = queue.popleft()
+    for neighbor in adjacency_list[current]:
+        if not visited[neighbor]:
+            visited[neighbor] = True
+            queue.append(neighbor)
 
-    while stack:
-        node = stack.pop()
-        if node not in visited:
-            visited.add(node)
-            stack.extend(graph[node])
+connected_count = 0
+for node_index in range(1, node_count):
+    if visited[node_index] == 1:
+        connected_count += 1
 
-    return visited
-
-
-if __name__ == "__main__":
-    num = int(input())
-    network = int(input())
-    edges = [tuple(map(int, input().split())) for _ in range(network)]
-    """
-    [(1, 2), (2, 3), (1, 5), (5, 2), (5, 6), (4, 7)]
-    """
-
-    graph = adjacency_list(num, edges)
-    """
-    {
-        1: [2, 5],
-        2: [1, 3, 5],
-        3: [2],
-        4: [7],
-        5: [1, 2, 6],
-        6: [5],
-        7: [4]
-    }
-    """
-
-    infected: set = dfs(graph, 1)
-    """
-    {1, 2, 3, 5, 6}
-    """
-
-    print(len(infected) - 1)
+connected_count = sum(visited) - 1
+print(connected_count)
