@@ -1,23 +1,26 @@
 # https://www.acmicpc.net/problem/1715
+# huffman coding
 
-import heapq
+from queue import PriorityQueue
 
 n = int(input())
-heap = []
 
-for i in range(n):
-    x = int(input())
-    heapq.heappush(heap, x)
+min_heap = PriorityQueue()
+
+for _ in range(n):
+    deck_size = int(input())
+    min_heap.put(deck_size)
 
 total_cost = 0
+# keep combining until only one deck is left
+while min_heap.qsize() > 1:
+    smallest = min_heap.get()
+    next_smallest = min_heap.get()
 
-while len(heap) != 1:
-    smallest = heapq.heappop(heap)
-    next_smallest = heapq.heappop(heap)
+    # merge them into one deck
+    merged = smallest + next_smallest
+    min_heap.put(merged)
 
-    merge_cost = smallest + next_smallest
-    total_cost += merge_cost
-
-    heapq.heappush(heap, merge_cost)
+    total_cost += merged
 
 print(total_cost)
