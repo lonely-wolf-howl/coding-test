@@ -1,7 +1,6 @@
-# 유기농 배추
 # https://www.acmicpc.net/problem/1012
 
-T = int(input())
+t = int(input())
 
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
@@ -21,19 +20,19 @@ def dfs(x: int, y: int, grid: list, visited: list):
 
 
 def process():
-    M, N, K = map(int, input().split())
+    m, n, k = map(int, input().split())
 
-    grid = [[0 for _ in range(M + 2)] for _ in range(N + 2)]
-    visited = [[False for _ in range(M + 2)] for _ in range(N + 2)]
+    grid = [[0 for i in range(m + 2)] for j in range(n + 2)]
+    visited = [[False for i in range(m + 2)] for j in range(n + 2)]
 
-    for _ in range(K):
-        X, Y = map(int, input().split())
-        grid[Y + 1][X + 1] = 1
+    for _ in range(k):
+        x, y = map(int, input().split())
+        grid[y + 1][x + 1] = 1
 
     answer = 0
 
-    for i in range(1, N + 1):
-        for j in range(1, M + 1):
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
             if grid[i][j] == 1 and not visited[i][j]:
                 dfs(i, j, grid, visited)
                 answer += 1
@@ -41,5 +40,5 @@ def process():
     print(answer)
 
 
-for _ in range(T):
+for i in range(t):
     process()
