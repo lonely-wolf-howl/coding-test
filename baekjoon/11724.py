@@ -1,44 +1,42 @@
-# 연결 요소의 개수
+# https://www.acmicpc.net/problem/11724
 
 import sys
+from collections import deque
 
 input = sys.stdin.readline
 
+n, m = list(map(int, input().split()))
 
-# 특정 원소가 속한 집합을 찾기
-def find_parent(parent, x):
-    if parent[x] != x:
-        parent[x] = find_parent(parent, parent[x])
-    return parent[x]
+graph = [[] for _ in range(n + 1)]
 
+for _ in range(m):
+    a, b = list(map(int, input().split()))
 
-# 두 원소가 속한 집합을 합치기
-def union_parent(parent, a, b):
-    a = find_parent(parent, a)
-    b = find_parent(parent, b)
+    graph[a].append(b)
+    graph[b].append(a)
 
-    if a < b:
-        parent[b] = a
-    else:
-        parent[a] = b
+# graph
+# [[], [2, 5], [1, 5], [4], [3, 6], [2, 1], [4]]
 
+visited = [False] * (n + 1)
+count = 0
 
-# 점의 개수 N과 간선의 개수 M
-N, M = map(int, input().split())
+for i in range(1, n + 1):
+    if visited[i]:
+        continue
 
-parent = [0] * (N + 1)
+    count += 1  # found a new connected component
 
-# 부모를 자기 자신으로 초기화
-for i in range(1, N + 1):
-    parent[i] = i
+    # breadth first search
+    queue = deque([i])
+    visited[i] = True
 
-for i in range(M):  # M은 합치기(union) 연산의 수와 동일
-    a, b = map(int, input().split())
-    union_parent(parent, a, b)
+    while queue:
+        current = queue.popleft()
 
-counter = set()  # 고유한 집합의 수
+        for next in graph[current]:
+            if not visited[next]:
+                queue.append(next)
+                visited[next] = True
 
-for i in range(1, N + 1):
-    counter.add(find_parent(parent, i))
-
-print(len(counter))
+print(count)
