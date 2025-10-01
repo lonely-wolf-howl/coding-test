@@ -10,7 +10,7 @@ for _ in range(m):
     graph[a].append(b)
     graph[b].append(a)
 
-best_sum = 10 ** 15
+best_sum = 1e9
 best_person = -1
 
 for start in range(1, n + 1):
@@ -32,7 +32,6 @@ for start in range(1, n + 1):
 
     total = sum(dist)
 
-    # keep the smallest index on equal
     if total < best_sum:
         best_sum = total
         best_person = start
