@@ -20,7 +20,7 @@ for _ in range(E):
 dist = [INF] * (V + 1)
 dist[K] = 0
 
-heap = [(dist[K], K)]
+heap = [(0, K)]
 
 while heap:
     cur_dist, cur_node = heapq.heappop(heap)
