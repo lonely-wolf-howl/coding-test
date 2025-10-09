@@ -1,44 +1,41 @@
 # https://www.acmicpc.net/problem/1766
 
-import heapq
+import sys
+from queue import PriorityQueue
 
-N, M = map(int, input().split())
+input = sys.stdin.readline
 
-graph = [[] for _ in range(N + 1)]  # adjacency list
-indegree = [0] * (N + 1)
+n, m = map(int, input().split())
 
-for _ in range(M):
-    A, B = map(int, input().split())
-    graph[A].append(B)
-    indegree[B] += 1
+# number of incoming edges to node 'i'
+indegree = [0] * (n + 1)
 
-"""
-print(graph)
-[[], [], [], [1], [2]]
+adj = [[] for i in range(n + 1)]
+for i in range(m):
+    a, b = map(int, input().split())
+    adj[a].append(b)
+    indegree[b] += 1
 
-print(indegree)
-[0, 1, 1, 0, 0]
-"""
+# adj
+# [[], [], [], [1], [2]]
 
-# put all nodes with indegree 0 into a min-heap
-# ensures the smallest-numbered problem is chosen first
-heap = []
-for i in range(1, N + 1):
+# indegree
+# [0, 1, 1, 0, 0]
+
+pq = PriorityQueue()
+for i in range(1, n + 1):
     if indegree[i] == 0:
-        heapq.heappush(heap, i)
+        pq.put(i)
 
-"""
-print(heap)
-[3, 4]
-"""
-
+# topological sort
 order = []
-while heap:
-    current = heapq.heappop(heap)
-    order.append(current)  # order.append(3)
-    for neighbor in graph[current]:  # for 1 in [1]:
-        indegree[neighbor] -= 1  # indegree[1] -= 1
-        if indegree[neighbor] == 0:
-            heapq.heappush(heap, neighbor)
+while pq.qsize() != 0:
+    u = pq.get()
+    order.append(u)
+
+    for v in adj[u]:
+        indegree[v] -= 1
+        if indegree[v] == 0:
+            pq.put(v)
 
 print(*order)

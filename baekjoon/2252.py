@@ -10,7 +10,7 @@ n, m = map(int, input().split())
 # number of incoming edges to node 'i'
 indegree = [0] * (n + 1)
 
-adj = [[] for _ in range(n + 1)]
+adj = [[] for i in range(n + 1)]
 for i in range(m):
     a, b = map(int, input().split())
     adj[a].append(b)
