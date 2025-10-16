@@ -8,9 +8,9 @@ right = n
 while left < right:
     mid = (left + right) // 2
 
-    if mid * mid >= n:
-        right = mid
-    else:
+    if mid * mid < n:
         left = mid + 1
+    else:
+        right = mid
 
 print(left)
