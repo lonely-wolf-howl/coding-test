@@ -10,7 +10,7 @@ for i in range(24):
         fatigue += a
         work += b
     else:
-        fatigue -= c  # take a rest
+        fatigue -= c
         fatigue = max(0, fatigue)
 
 print(work)
