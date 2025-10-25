@@ -7,7 +7,6 @@ arr = list(map(int, input().split()))
 
 cnt = 0
 for r in range(1, n + 1):  # r: subset length
-    print(r)
     for comb in combinations(arr, r):
         if sum(comb) == s:
             cnt += 1
