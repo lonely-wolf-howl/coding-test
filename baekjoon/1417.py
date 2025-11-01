@@ -2,13 +2,6 @@
 
 from queue import PriorityQueue
 
-"""
-3
-5
-7
-7
-"""
-
 n = int(input())
 
 votes = [0] * n
