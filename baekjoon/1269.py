@@ -1,16 +1,8 @@
-# 대칭 차집합
 # https://www.acmicpc.net/problem/1269
-
-"""
-예제 입력
-3 5
-1 2 4
-2 3 4 5 6
-"""
 
 
 def process(a_list, b_list):
-    a_list.sort()  # time complexity: n log n
+    a_list.sort()
     b_list.sort()
 
     i = j = 0
